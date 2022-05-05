@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+
+.sidebar-mini.sidebar-collapse .main-sidebar {
+    background: transparent !important;
+}
+.control-sidebar .offcanvas .sidebar-menu>li, .control-sidebar .sidebar-tabs, .control-sidebar .tab-content, .control-sidebar.offcanvas .sidebar-menu>li, .theme-dark .offcanvas .sidebar-menu>li, .theme-dark .sidebar-tabs, .theme-dark .tab-content, .theme-dark.offcanvas .sidebar-menu>li {
+    border:none;
+}
+.theme-dark .main-sidebar{
+   // background: black !important;
+    opacity: 0.9;
+}
+.sidebar-menu>li>a{
+    color:white;
+}
+body::-webkit-scrollbar {
+    display: none;
+  }
