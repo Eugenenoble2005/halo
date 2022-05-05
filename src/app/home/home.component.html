@@ -454,7 +454,8 @@
                                     <div class="tab-pane fade show active" id="w2-tab1" role="tabpanel"
                                          aria-labelledby="w2-tab1">
                                        <div class="playlist pl-lg-3 pr-lg-3">
-                                           <div class="m-1 my-4">
+
+                                           <div class="m-1 my-4" *ngFor = "let song of songs">
                                                <div class="d-flex align-items-center">
                                                    <div class="col-1">
                                                        <a class="no-ajaxy media-url" href="assets/media/track1.mp3">
@@ -465,7 +466,7 @@
                                                        <figure class="avatar-md float-left  mr-3 mt-1">
                                                            <img class="r-3" src="assets/img/demo/a1.jpg" alt="">
                                                        </figure>
-                                                       <h6>Dance with me tonight</h6>Joe Doe
+                                                       <h6> {{ song.title }} </h6>{{ song.artist}} 
                                                    </div>
                                                    <div class="col-md-5 d-none d-lg-block">
                                                        <div class="d-flex">
@@ -486,166 +487,7 @@
                                                    </div>
                                                </div>
                                            </div>
-                                           <div class="m-1 my-4">
-                                               <div class="d-flex align-items-center">
-                                                   <div class="col-1">
-                                                       <a class="no-ajaxy media-url" href="assets/media/track2.mp3" data-wave="assets/media/track2.json">
-                                                           <i class="icon-play s-28"></i>
-                                                       </a>
-                                                   </div>
-                                                   <div class="col-md-6">
-                                                       <figure class="avatar-md float-left  mr-3 mt-1">
-                                                           <img class="r-3" src="assets/img/demo/a2.jpg" alt="">
-                                                       </figure>
-                                                       <h6>Dance with me tonight</h6>Joe Doe
-                                                   </div>
-                                                   <div class="col-md-5 d-none d-lg-block">
-                                                       <div class="d-flex">
-                                                           <span class="ml-auto"> 5:03</span>
-                                                           <a href="#" class="ml-auto"><i class="icon-share-1"></i></a>
-                                                           <div class="ml-auto">
-                                                               <a href="#" class="btn btn-outline-primary btn-sm">Buy at iTunes</a>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-1 ml-auto d-lg-none">
-                                                       <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                                           <i class="icon-more-1"></i></a>
-                                                       <div class="dropdown-menu dropdown-menu-right">
-                                                           <a  class="dropdown-item" href="#"><i class="icon-share-1 mr-3"></i> Share</a>
-                                                           <a  class="dropdown-item" href="#"><i class="icon-shopping-bag mr-3"></i>Buy at iTunes</a>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                           <div class="m-1 my-4">
-                                               <div class="d-flex align-items-center">
-                                                   <div class="col-1">
-                                                       <a class="no-ajaxy media-url" href="assets/media/track3.mp3" data-wave="assets/media/track3.json">
-                                                           <i class="icon-play s-28"></i>
-                                                       </a>
-                                                   </div>
-                                                   <div class="col-md-6">
-                                                       <figure class="avatar-md float-left  mr-3 mt-1">
-                                                           <img class="r-3" src="assets/img/demo/a3.jpg" alt="">
-                                                       </figure>
-                                                       <h6>Dance with me tonight</h6>Joe Doe
-                                                   </div>
-                                                   <div class="col-md-5 d-none d-lg-block">
-                                                       <div class="d-flex">
-                                                           <span class="ml-auto"> 5:03</span>
-                                                           <a href="#" class="ml-auto"><i class="icon-share-1"></i></a>
-                                                           <div class="ml-auto">
-                                                               <a href="#" class="btn btn-outline-primary btn-sm">Buy at iTunes</a>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-1 ml-auto d-lg-none">
-                                                       <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                                           <i class="icon-more-1"></i></a>
-                                                       <div class="dropdown-menu dropdown-menu-right">
-                                                           <a  class="dropdown-item" href="#"><i class="icon-share-1 mr-3"></i> Share</a>
-                                                           <a  class="dropdown-item" href="#"><i class="icon-shopping-bag mr-3"></i>Buy at iTunes</a>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                           <div class="m-1 my-4">
-                                               <div class="d-flex align-items-center">
-                                                   <div class="col-1">
-                                                       <a class="no-ajaxy media-url" href="assets/media/track1.mp3" data-wave="assets/media/track1.json">
-                                                           <i class="icon-play s-28"></i>
-                                                       </a>
-                                                   </div>
-                                                   <div class="col-md-6">
-                                                       <figure class="avatar-md float-left  mr-3 mt-1">
-                                                           <img class="r-3" src="assets/img/demo/a4.jpg" alt="">
-                                                       </figure>
-                                                       <h6>Dance with me tonight</h6>Joe Doe
-                                                   </div>
-                                                   <div class="col-md-5 d-none d-lg-block">
-                                                       <div class="d-flex">
-                                                           <span class="ml-auto"> 5:03</span>
-                                                           <a href="#" class="ml-auto"><i class="icon-share-1"></i></a>
-                                                           <div class="ml-auto">
-                                                               <a href="#" class="btn btn-outline-primary btn-sm">Buy at iTunes</a>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-1 ml-auto d-lg-none">
-                                                       <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                                           <i class="icon-more-1"></i></a>
-                                                       <div class="dropdown-menu dropdown-menu-right">
-                                                           <a  class="dropdown-item" href="#"><i class="icon-share-1 mr-3"></i> Share</a>
-                                                           <a  class="dropdown-item" href="#"><i class="icon-shopping-bag mr-3"></i>Buy at iTunes</a>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                           <div class="m-1 my-4">
-                                               <div class="d-flex align-items-center">
-                                                   <div class="col-1">
-                                                       <a class="no-ajaxy media-url" href="assets/media/track2.mp3" data-wave="assets/media/track2.json">
-                                                           <i class="icon-play s-28"></i>
-                                                       </a>
-                                                   </div>
-                                                   <div class="col-md-6">
-                                                       <figure class="avatar-md float-left  mr-3 mt-1">
-                                                           <img class="r-3" src="assets/img/demo/a5.jpg" alt="">
-                                                       </figure>
-                                                       <h6>Dance with me tonight</h6>Joe Doe
-                                                   </div>
-                                                   <div class="col-md-5 d-none d-lg-block">
-                                                       <div class="d-flex">
-                                                           <span class="ml-auto"> 5:03</span>
-                                                           <a href="#" class="ml-auto"><i class="icon-share-1"></i></a>
-                                                           <div class="ml-auto">
-                                                               <a href="#" class="btn btn-outline-primary btn-sm">Buy at iTunes</a>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-1 ml-auto d-lg-none">
-                                                       <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                                           <i class="icon-more-1"></i></a>
-                                                       <div class="dropdown-menu dropdown-menu-right">
-                                                           <a  class="dropdown-item" href="#"><i class="icon-share-1 mr-3"></i> Share</a>
-                                                           <a  class="dropdown-item" href="#"><i class="icon-shopping-bag mr-3"></i>Buy at iTunes</a>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                           <div class="m-1 my-4">
-                                               <div class="d-flex align-items-center">
-                                                   <div class="col-1">
-                                                       <a class="no-ajaxy media-url" href="assets/media/track2.mp3" data-wave="assets/media/track2.json">
-                                                           <i class="icon-play s-28"></i>
-                                                       </a>
-                                                   </div>
-                                                   <div class="col-md-6">
-                                                       <figure class="avatar-md float-left  mr-3 mt-1">
-                                                           <img class="r-3" src="assets/img/demo/a8.jpg" alt="">
-                                                       </figure>
-                                                       <h6>Dance with me tonight</h6>Joe Doe
-                                                   </div>
-                                                   <div class="col-md-5 d-none d-lg-block">
-                                                       <div class="d-flex">
-                                                           <span class="ml-auto"> 5:03</span>
-                                                           <a href="#" class="ml-auto"><i class="icon-share-1"></i></a>
-                                                           <div class="ml-auto">
-                                                               <a href="#" class="btn btn-outline-primary btn-sm">Buy at iTunes</a>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-1 ml-auto d-lg-none">
-                                                       <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                                           <i class="icon-more-1"></i></a>
-                                                       <div class="dropdown-menu dropdown-menu-right">
-                                                           <a  class="dropdown-item" href="#"><i class="icon-share-1 mr-3"></i> Share</a>
-                                                           <a  class="dropdown-item" href="#"><i class="icon-shopping-bag mr-3"></i>Buy at iTunes</a>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
+
                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="w2-tab3" role="tabpanel"

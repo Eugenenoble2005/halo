@@ -8,20 +8,13 @@ declare var $:any;
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
- 
+ public songs:any
   constructor(
       public $common:CommonService
   ) { }
   initializeWavesurfer()
 
     {
-    //   if ($('#waveform').length > 0) {
-    //     document.addEventListener('DOMContentLoaded', function () {
-    
-    
-    //     });
-    // }
-    
     var wavesurfer = WaveSurfer.create({
       container: '#waveform',
       backend: 'MediaElement',
@@ -222,10 +215,8 @@ var prevTrackSelector = $('#previousTrack');
     
     }
   ngOnInit(): void {
-   this.initializeWavesurfer()
+      //retrieve songs from main process
+      this.songs = this.$common.$electron.ipcRenderer.sendSync("get_songs")
+      this.initializeWavesurfer()
   }
-  getSongs()
-  {
-
-  }
-}
+} 
