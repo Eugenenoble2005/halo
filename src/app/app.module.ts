@@ -7,7 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { AssetHandlerComponent } from './asset-handler/asset-handler.component';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { NgScrollbarModule } from "ngx-scrollbar";
-import { ElectronService, NgxElectronModule } from 'ngx-electron';
+import { ElectronService } from 'ngx-electron';
+import { CommonService } from './common.service';
+import { MillToTimePipe } from './mill-to-time.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { ElectronService, NgxElectronModule } from 'ngx-electron';
     HomeComponent,
     AssetHandlerComponent,
     SidemenuComponent,
+    MillToTimePipe,
 
   ],
   imports: [
@@ -22,7 +25,7 @@ import { ElectronService, NgxElectronModule } from 'ngx-electron';
     AppRoutingModule,
     NgScrollbarModule
   ],
-  providers: [ElectronService,NgxElectronModule],
+  providers: [ElectronService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

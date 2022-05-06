@@ -368,14 +368,15 @@
                      data-pager="false"
                      data-loop="true">
                     <div class="xv-slide" data-bg-possition="top"
-                         style="background-image:url('assets/img/demo/b1.jpg');">
+                         style="background-image:url('assets/img/demo/b1.jpg');" id = "masthead">
                         <div class="has-bottom-gradient">
                             <div class="p-md-5 p-3">
                                 <div class="row">
                                     <div class="col-12 col-lg-6 fadeInRight animated">
                                         <div class="xv-slider-content clearfix color-white">
                                             <h1 class="s-64 mt-5 font-weight-lighter">Halo Player</h1>
-                                            <p class="s-24 font-weight-lighter">Keep listening
+                                            <p class="s-24 font-weight-lighter">Keep listening</p>
+                                            <marquee id = "track-list" style="font-size: 25px;"></marquee>
                                             <div class="pt-3">
                                                 <a href="#" class="btn btn-primary btn-lg">Create New Playlist</a>
                                             </div>
@@ -454,23 +455,23 @@
                                     <div class="tab-pane fade show active" id="w2-tab1" role="tabpanel"
                                          aria-labelledby="w2-tab1">
                                        <div class="playlist pl-lg-3 pr-lg-3">
-
+ 
                                            <div class="m-1 my-4" *ngFor = "let song of songs">
                                                <div class="d-flex align-items-center">
                                                    <div class="col-1">
-                                                       <a class="no-ajaxy media-url" href="assets/media/track1.mp3">
+                                                       <a class="no-ajaxy media-url" href="{{ song.path}}" data-wave="assets/media/track2.json" (click) = "setMedia(song.picture,song.title)"> 
                                                            <i class="icon-play s-28"></i>
                                                        </a>
                                                    </div>
                                                    <div class="col-md-6">
                                                        <figure class="avatar-md float-left  mr-3 mt-1">
-                                                           <img class="r-3" src="assets/img/demo/a1.jpg" alt="">
+                                                           <img class="r-3" src="{{ song.picture }}" alt="">
                                                        </figure>
                                                        <h6> {{ song.title }} </h6>{{ song.artist}} 
                                                    </div>
                                                    <div class="col-md-5 d-none d-lg-block">
                                                        <div class="d-flex">
-                                                           <span class="ml-auto"> 5:03</span>
+                                                           <span class="ml-auto"> {{ song.duration | millToTime }} </span>
                                                            <a href="#" class="ml-auto"><i class="icon-share-1"></i></a>
                                                            <div class="ml-auto">
                                                                <a href="#" class="btn btn-outline-primary btn-sm">Buy at iTunes</a>

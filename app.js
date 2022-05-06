@@ -17,6 +17,8 @@ const  { BrowserWindow} = require('electron-acrylic-window')
         webPreferences: {
           nodeIntegration: true,
           contextIsolation:false,
+          //websecuriy is disabled to allow the player to access local files
+          webSecurity:false
         }
       })  
 
@@ -30,14 +32,13 @@ const  { BrowserWindow} = require('electron-acrylic-window')
       );
       // Open the DevTools.
       mainWindow.webContents.openDevTools()
-      mainWindow.setMenuBarVisibility(false)
+      mainWindow.setMenuBarVisibility(true)
       mainWindow.on('closed', function () {
         mainWindow = null
       })
     }
     //import modules
     require("./modules/songs.js");
-
     app.on('ready', createWindow)
 
     app.on('window-all-closed', function () {

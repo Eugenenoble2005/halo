@@ -9,6 +9,7 @@ declare var $:any;
 })
 export class HomeComponent implements OnInit {
  public songs:any
+ public sampleImage: any;
   constructor(
       public $common:CommonService
   ) { }
@@ -214,9 +215,15 @@ var prevTrackSelector = $('#previousTrack');
     
     
     }
+    setMedia(src:any,track:any)
+    {
+        (<HTMLBodyElement>document.getElementById("masthead")).style.backgroundImage = `url(${src})`;
+        (<HTMLBodyElement>document.getElementById("track-list")).innerHTML = "Now Playing" + " "+track
+    }
   ngOnInit(): void {
       //retrieve songs from main process
       this.songs = this.$common.$electron.ipcRenderer.sendSync("get_songs")
+      console.log(this.songs)
       this.initializeWavesurfer()
   }
 } 

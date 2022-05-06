@@ -15,3 +15,9 @@
 body::-webkit-scrollbar {
     display: none;
   }
+  .slimScrollBar{
+      display:none
+  }
+body{
+    user-select: none !important;
+}
