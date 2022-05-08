@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../common.service';
 declare var WaveSurfer:any;
 declare var $:any;
+declare var Vibrant:any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,13 +15,12 @@ export class HomeComponent implements OnInit {
       public $common:CommonService
   ) { }
   initializeWavesurfer()
-
     {
+    const self = this
     var wavesurfer = WaveSurfer.create({
       container: '#waveform',
       backend: 'MediaElement',
       waveColor: $('body').hasClass('theme-dark') ? '#243049' : '#ecf0f5',
-      progressColor: '#ff1744',
       height: 50,
       responsive: false,
       barWidth: 3,
@@ -31,8 +31,6 @@ export class HomeComponent implements OnInit {
 var prevTrackSelector = $('#previousTrack');
     // Bind controls
     document.addEventListener('DOMContentLoaded', function () {
-    
-    
         if ($('#playPause').length > 0) {
             var playPause:any = document.querySelector('#playPause');
     
@@ -124,6 +122,9 @@ var prevTrackSelector = $('#previousTrack');
                 links[currentTrack].classList.remove('active');
                 currentTrack = index;
                 links[currentTrack].classList.add('active');
+                let title = (<HTMLBodyElement>links[currentTrack]).dataset["songTitle"]
+                let picture = (<HTMLBodyElement>links[currentTrack]).dataset["songPicture"]
+                self.setMedia(picture,title)
           //@ts-ignore
                 var waveUrl = links[currentTrack].dataset.wave;
     
@@ -215,15 +216,38 @@ var prevTrackSelector = $('#previousTrack');
     
     
     }
+    /**
+     * 
+     * @param src the source of the picture that must be html accesible
+     * @param track the track name or title
+     */
     setMedia(src:any,track:any)
     {
+        //change masthead image to albulm track
         (<HTMLBodyElement>document.getElementById("masthead")).style.backgroundImage = `url(${src})`;
-        (<HTMLBodyElement>document.getElementById("track-list")).innerHTML = "Now Playing" + " "+track
+        (<HTMLBodyElement>document.getElementById("track-list")).innerHTML = "Now Playing" + " "+track;
+
+        //change app accent color to track vibrant color
+        var accent_image = (<HTMLImageElement>document.getElementById("accent-helper"))
+        accent_image.src = src;
+        Vibrant.from(accent_image).getPalette().then((pallete:any)=>{
+            console.log(pallete)
+            document.querySelectorAll(".btn-link").forEach((element)=>{
+                //@ts-ignore
+                element.style.color = pallete.Vibrant.hex
+            });
+            //inner wavesurfer
+            let wave = (<HTMLBodyElement>document.querySelectorAll("wave")[1]);
+            //outer wavesurfer
+            let outerWave = (<HTMLBodyElement>document.querySelectorAll("wave")[0]);
+            wave.style.background = pallete.Vibrant.hex
+            outerWave.style.border = `1px solid ${pallete.Vibrant.hex}`
+            outerWave.style.overflow = "hidden"
+        })
     }
   ngOnInit(): void {
       //retrieve songs from main process
       this.songs = this.$common.$electron.ipcRenderer.sendSync("get_songs")
-      console.log(this.songs)
       this.initializeWavesurfer()
   }
 } 

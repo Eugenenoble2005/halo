@@ -11,7 +11,7 @@ const  { BrowserWindow} = require('electron-acrylic-window')
         height: 600,
         vibrancy:{
           theme:"#12345678",
-          effect:"acrylic"
+          effect:"blur"
           
         },
         webPreferences: {
