@@ -11,7 +11,7 @@ const  { BrowserWindow} = require('electron-acrylic-window')
         height: 600,
         vibrancy:{
           theme:"#12345678",
-          effect:"blur"
+          effect:"acrylic"
           
         },
         webPreferences: {
@@ -21,7 +21,7 @@ const  { BrowserWindow} = require('electron-acrylic-window')
           webSecurity:false
         }
       })  
-
+      mainWindow.webContents.openDevTools()
       mainWindow.loadURL(
         // url.format({
         //   pathname: path.join(__dirname, `/dist/electron-app/index.html`),
@@ -31,8 +31,6 @@ const  { BrowserWindow} = require('electron-acrylic-window')
         "http://localhost:4200"
       );
       // Open the DevTools.
-      mainWindow.webContents.openDevTools()
-      mainWindow.setMenuBarVisibility(true)
       mainWindow.on('closed', function () {
         mainWindow = null
       })

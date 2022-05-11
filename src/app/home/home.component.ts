@@ -11,6 +11,8 @@ declare var Vibrant:any;
 export class HomeComponent implements OnInit {
  public songs:any
  public sampleImage: any;
+ public isInShuffle: any = false
+    defaultSongs: any;
   constructor(
       public $common:CommonService
   ) { }
@@ -127,16 +129,16 @@ var prevTrackSelector = $('#previousTrack');
                 self.setMedia(picture,title)
           //@ts-ignore
                 var waveUrl = links[currentTrack].dataset.wave;
-    
                 if (waveUrl !== undefined) {
                         //@ts-ignore
                     $.getJSON(waveUrl, function (data) {
                             //@ts-ignore
-                        wavesurfer.load(links[currentTrack].href, data.data);
+                        wavesurfer.load((<HTMLBodyElement>links[currentTrack]).dataset["songSrc"], data.data);
+                        console.log()
                     });
                 } else {
                         //@ts-ignore
-                    wavesurfer.load(links[currentTrack].href);
+                    wavesurfer.load((<HTMLBodyElement>links[currentTrack]).dataset["songSrc"]);
                     // wavesurfer.playPause();
                 }
           //@ts-ignore
@@ -199,16 +201,7 @@ var prevTrackSelector = $('#previousTrack');
     
             //loading
                   //@ts-ignore
-            wavesurfer.on('loading', function (percents, eventTarget) {
-                    //@ts-ignore
-                NProgress.start();
-    
-                if (percents >= 100) {
-                        //@ts-ignore
-                    NProgress.done();
-                }
-            });
-    
+         
         }
     
     
@@ -225,13 +218,12 @@ var prevTrackSelector = $('#previousTrack');
     {
         //change masthead image to albulm track
         (<HTMLBodyElement>document.getElementById("masthead")).style.backgroundImage = `url(${src})`;
-        (<HTMLBodyElement>document.getElementById("track-list")).innerHTML = "Now Playing" + " "+track;
+        (<HTMLBodyElement>document.getElementById("track-list")).innerHTML = track != undefined ? `Now playing ${track}` : "";
 
         //change app accent color to track vibrant color
         var accent_image = (<HTMLImageElement>document.getElementById("accent-helper"))
         accent_image.src = src;
         Vibrant.from(accent_image).getPalette().then((pallete:any)=>{
-            console.log(pallete)
             document.querySelectorAll(".btn-link").forEach((element)=>{
                 //@ts-ignore
                 element.style.color = pallete.Vibrant.hex
@@ -248,6 +240,35 @@ var prevTrackSelector = $('#previousTrack');
   ngOnInit(): void {
       //retrieve songs from main process
       this.songs = this.$common.$electron.ipcRenderer.sendSync("get_songs")
+      this.defaultSongs = JSON.parse(JSON.stringify(this.songs))
       this.initializeWavesurfer()
+    $(function(){
+        $("a").click(function(event:any){
+            event.preventDefault()
+            console.log(event)
+        })
+    })
+    
+  }
+  shufflePlaylist()
+  {
+    //shuffle songs array
+    let current_index = this.songs.length, randomIndex
+    var self = this
+    if(this.isInShuffle){
+        //revert back to non shuffle by deepcopying the defaultSongs object into songs
+        this.songs = JSON.parse(JSON.stringify(this.defaultSongs))
+        this.isInShuffle = !this.isInShuffle
+    }
+    else{
+        while (current_index != 0){
+            randomIndex = Math.floor(Math.random() * current_index)
+            current_index--
+            [this.songs[current_index], this.songs[randomIndex]] = [
+                this.songs[randomIndex], this.songs[current_index]
+            ]
+        }
+        this.isInShuffle = !this.isInShuffle
+    }
   }
 } 

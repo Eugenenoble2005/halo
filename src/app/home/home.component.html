@@ -297,6 +297,7 @@
                 </div>
                 <div class="col d-none d-lg-block">
                     <small class="track-time mr-2 text-primary align-middle"></small>
+                    <p (click) = "shufflePlaylist()">Shuffle</p>
                     <a data-toggle="control-sidebar">
                         <i class="icon icon-menu-3 s-24 align-middle"></i>
                     </a>
@@ -384,7 +385,7 @@
                             </div>
                         </div>
                         <div class="bottom-gradient"></div>
-                    </div>
+                    </div> 
                 </div>
             </div>
             <!--slider Wrap-->
@@ -404,8 +405,7 @@
                                         <div class="d-flex">
                                             <!--<i class="icon-music s-36 mr-3  mt-2"></i>-->
                                             <div>
-                                                <h4>Most Popular This Week</h4>
-                                                <p>Checkout What's new at our blog</p>
+                                                <h4>Your local Library</h4>
                                                 <div class="mt-3">
                                                     <ul class="nav nav-tabs card-header-tabs nav-material responsive-tab mb-1"
                                                         role="tablist">
@@ -413,25 +413,25 @@
                                                             <a class="nav-link active show" id="w2--tab1"
                                                                data-toggle="tab" href="#w2-tab1"
                                                                role="tab"
-                                                               aria-selected="true">Rock</a>
+                                                               aria-selected="true">All</a>
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link" id="w3--tab1" data-toggle="tab"
                                                                href="#w2-tab1"
                                                                role="tab"
-                                                               aria-selected="false">Jazz</a>
+                                                               aria-selected="false">Playlists</a>
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link" id="w4--tab3" data-toggle="tab"
                                                                href="#w2-tab3" role="tab"
 
-                                                               aria-selected="false">Classic</a>
+                                                               aria-selected="false">Albulms</a>
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link" id="w5--tab1" data-toggle="tab"
                                                                href="#w2-tab1" role="tab"
 
-                                                               aria-selected="false">Jazz</a>
+                                                               aria-selected="false">Artists    </a>
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link" id="w6--tab3" data-toggle="tab"
@@ -457,7 +457,7 @@
                                            <div class="m-1 my-4" *ngFor = "let song of songs">
                                                <div class="d-flex align-items-center">
                                                    <div class="col-1">
-                                                       <a class="no-ajaxy media-url" href="{{ song.path}}"  (click) = "setMedia(song.picture,song.title)" [attr.data-song-title] = song.title [attr.data-song-picture] = song.picture> 
+                                                       <a class="no-ajaxy media-url" attr.data-song-src="{{ song.path}}"  (click) = "setMedia(song.picture,song.title)" [attr.data-song-title] = song.title [attr.data-song-picture] = song.picture> 
                                                            <i class="icon-play s-28"></i>
                                                        </a>
                                                    </div>
